@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes de internet y descuentos</title>
+    <link rel="stylesheet" href="css/colors.css">
+</head>
+<body>
+
+    <script>
+    
+        let nombreCliente = prompt("Ingrese su nombre:");
+        
+        let tipoPlan = parseInt(prompt(
+            "Elija el tipo de plan de internet (ingrese el número):\n" +
+            "1 - Básico (10 Mbps) - $40.000\n" +
+            "2 - Estándar (50 Mbps) - $70.000\n" +
+            "3 - Premium (100 Mbps) - $100.000"
+        ));
+
+        let numeroMeses = parseInt(prompt("Ingrese el número de meses que desea contratar:"));
+
+        let valorMensual = 0;
+        let nombrePlan = "";
+
+    
+        switch (tipoPlan) {
+            case 1:
+                valorMensual = 40000;
+                nombrePlan = "Básico (10 Mbps)";
+                break;
+            case 2:
+                valorMensual = 70000;
+                nombrePlan = "Estándar (50 Mbps)";
+                break;
+            case 3:
+                valorMensual = 100000;
+                nombrePlan = "Premium (100 Mbps)";
+                break;
+            default:
+                valorMensual = 0;
+                nombrePlan = "Plan no válido";
+                alert("Opción de plan incorrecta.");
+        }
+
+     
+        let subtotal = valorMensual * numeroMeses;
+
+   
+        let porcentajeDescuento = 0;
+        let textoDescuento = "Ninguno (0%)";
+
+        if (numeroMeses >= 12) {
+            porcentajeDescuento = 0.20; 
+            textoDescuento = "20% de descuento (Contrato de 12 meses o más)";
+        } else if (numeroMeses >= 6) {
+            porcentajeDescuento = 0.10; 
+            textoDescuento = "10% de descuento (Contrato de 6 meses o más)";
+        }
+
+        let valorDescuento = subtotal * porcentajeDescuento;
+        let totalPagar = subtotal - valorDescuento;
+
+    
+        document.write("<div class='caja-internet'>");
+        document.write("<h1>Resumen de Contratación</h1>");
+        document.write("<p><strong>Nombre del cliente:</strong> " + nombreCliente + "</p>");
+        document.write("<p><strong>Tipo de plan:</strong> " + nombrePlan + "</p>");
+        document.write("<p><strong>Valor mensual:</strong> $" + valorMensual + "</p>");
+        document.write("<p><strong>Número de meses:</strong> " + numeroMeses + "</p>");
+        document.write("<p><strong>Descuento aplicado:</strong> <span class='descuento-aplicado'>" + textoDescuento + "</span></p>");
+        document.write("<div class='total-pagar'>");
+        document.write("<strong>Total a pagar:</strong> $" + totalPagar);
+        document.write("</div>");
+        document.write("</div>");
+    </script>
+    
+</body>
+</html>
